@@ -6,7 +6,7 @@
   },
   "version": "0.1.0",
   "scripts": {
-    "generate_music": "node script.js"
+    "generate_music": "node ./src/script.js"
   },
   "engines": {
     "node": "14.16.1",

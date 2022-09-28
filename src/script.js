@@ -1,6 +1,9 @@
-const { createCanvas, loadImage } = require('canvas')
+const { createCanvas } = require('canvas')
 const fs = require("fs")
 const drawTrebleClef = require('./drawTrebleClef')
+const pageCount = process.argv[2] ? Math.max(parseInt(process.argv[2]), 1) : 1
+
+console.log('\nInitilazing pdf\n')
 
 const PIXELS_PER_INCH = 72
 const width = 8.5 * PIXELS_PER_INCH
@@ -65,11 +68,18 @@ const drawMusicScore = (startX, endX) => {
   ctx.restore()
 }
 
+console.log('Generating pages\n')
+
 drawMusicScore(bounds.minX + margin + 40, bounds.maxX - margin)
-for (let i = 1; i <= 17; i++) {
+for (let i = 1; i <= 7 + 10 * (pageCount - 1); i++) {
   currentHeight += 50
   drawMusicScore(bounds.minX + margin, bounds.maxX - margin)
 }
 
+console.log('Saving pdf\n')
+
 const buffer = canvas.toBuffer('application/pdf')
-fs.writeFileSync('./musicsheet.pdf', buffer)
+fs.writeFileSync('./tmp/musicsheet.pdf', buffer)
+
+console.log('Done! 🎉\n')
+console.log('Music sheet can be found here: ./tmp/musicsheet.pdf\n')
