@@ -1,0 +1,15 @@
+{
+  "name": "music_generator",
+  "private": true,
+  "dependencies": {
+    "canvas": "^2.10.1"
+  },
+  "version": "0.1.0",
+  "scripts": {
+    "generate_music": "node script.js"
+  },
+  "engines": {
+    "node": "14.16.1",
+    "yarn": "^1.22.0"
+  }
+}
